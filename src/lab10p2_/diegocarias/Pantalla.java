@@ -5,6 +5,7 @@
 package lab10p2_.diegocarias;
 
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,12 +15,13 @@ import javax.swing.JOptionPane;
 public class Pantalla extends javax.swing.JFrame {
     static ArrayList<ticket> t = new ArrayList();
     static int cont = 0;
-
+    //static DefaultListModel Lista = new DefaultListModel();
     /**
      * Creates new form Pantalla
      */
     public Pantalla() {
         initComponents();
+        
     }
 
     /**
@@ -85,7 +87,7 @@ public class Pantalla extends javax.swing.JFrame {
             .addGroup(p_colo1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -100,7 +102,7 @@ public class Pantalla extends javax.swing.JFrame {
                     .addComponent(bt_mostrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(p_colo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,7 +207,7 @@ public class Pantalla extends javax.swing.JFrame {
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
                                 .addComponent(txt_descrip)))))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,7 +236,7 @@ public class Pantalla extends javax.swing.JFrame {
                         .addComponent(bt_preview)
                         .addGap(18, 18, 18)
                         .addComponent(bt_Registrar)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Crear Ticket", jPanel2);
@@ -247,7 +249,9 @@ public class Pantalla extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,7 +259,8 @@ public class Pantalla extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -307,8 +312,9 @@ public class Pantalla extends javax.swing.JFrame {
                     e = "Cerrado";
                     break;
             }
-            
-            
+            cont++;
+            t.add( new ticket(cont,asunto, e, p, descrip));
+            actualizar();
             
         }
     }//GEN-LAST:event_bt_RegistrarActionPerformed
@@ -346,6 +352,13 @@ public class Pantalla extends javax.swing.JFrame {
                 new Pantalla().setVisible(true);
             }
         });
+    }
+    void actualizar() {
+        DefaultListModel Lista = new DefaultListModel();
+        jl_1.setModel(Lista);        
+        for (ticket object : t) {
+            Lista.addElement(object.getAsunto());
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -10,25 +10,25 @@ package lab10p2_.diegocarias;
  */
 public class ticket {
     
-    public String numero;
+    public int numero;
     public String asunto;
-    public int estado;
-    public int prioridad;
+    public String estado;
+    public String prioridad;
     public String description;
 
-    public ticket(String numero, String asunto, int estado, int prioridad, String description) {
+    public ticket(int numero, String asunto, String estado, String prioridad, String description) {
         this.numero = numero;
         this.asunto = asunto;
         this.estado = estado;
         this.prioridad = prioridad;
         this.description = description;
-    }
+    }    
 
-    public String getNumero() {
+    public int getNumero() {
         return numero;
     }
 
-    public void setNumero(String numero) {
+    public void setNumero(int numero) {
         this.numero = numero;
     }
 
@@ -40,19 +40,19 @@ public class ticket {
         this.asunto = asunto;
     }
 
-    public int getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
-    public int getPrioridad() {
+    public String getPrioridad() {
         return prioridad;
     }
 
-    public void setPrioridad(int prioridad) {
+    public void setPrioridad(String prioridad) {
         this.prioridad = prioridad;
     }
 
@@ -62,7 +62,7 @@ public class ticket {
 
     public void setDescription(String description) {
         this.description = description;
-    }
+    }    
 
     @Override
     public String toString() {
