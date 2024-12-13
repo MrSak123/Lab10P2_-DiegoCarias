@@ -76,7 +76,7 @@
                           <Component id="bt_mostrar" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="p_colo1" min="-2" max="-2" attributes="0"/>
+                      <Component id="p_color1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="9" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -93,7 +93,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="bt_mostrarT" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="p_colo1" max="32767" attributes="0"/>
+                          <Component id="p_color1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   </Group>
@@ -124,6 +124,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Mostrar a Todos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_mostrarTActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="bt_mostrar">
               <Properties>
@@ -133,7 +136,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_mostrarActionPerformed"/>
               </Events>
             </Component>
-            <Container class="javax.swing.JPanel" name="p_colo1">
+            <Container class="javax.swing.JPanel" name="p_color1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="cc" green="cc" red="cc" type="rgb"/>

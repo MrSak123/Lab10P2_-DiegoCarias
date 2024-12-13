@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 public class Pantalla extends javax.swing.JFrame {
 
@@ -28,7 +29,7 @@ public class Pantalla extends javax.swing.JFrame {
         jl_1 = new javax.swing.JList<>();
         bt_mostrarT = new javax.swing.JButton();
         bt_mostrar = new javax.swing.JButton();
-        p_colo1 = new javax.swing.JPanel();
+        p_color1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txt_area1 = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
@@ -58,6 +59,11 @@ public class Pantalla extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jl_1);
 
         bt_mostrarT.setText("Mostrar a Todos");
+        bt_mostrarT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_mostrarTActionPerformed(evt);
+            }
+        });
 
         bt_mostrar.setText("Mostrar");
         bt_mostrar.addActionListener(new java.awt.event.ActionListener() {
@@ -66,24 +72,24 @@ public class Pantalla extends javax.swing.JFrame {
             }
         });
 
-        p_colo1.setBackground(new java.awt.Color(204, 204, 204));
+        p_color1.setBackground(new java.awt.Color(204, 204, 204));
 
         txt_area1.setColumns(20);
         txt_area1.setRows(5);
         jScrollPane2.setViewportView(txt_area1);
 
-        javax.swing.GroupLayout p_colo1Layout = new javax.swing.GroupLayout(p_colo1);
-        p_colo1.setLayout(p_colo1Layout);
-        p_colo1Layout.setHorizontalGroup(
-            p_colo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(p_colo1Layout.createSequentialGroup()
+        javax.swing.GroupLayout p_color1Layout = new javax.swing.GroupLayout(p_color1);
+        p_color1.setLayout(p_color1Layout);
+        p_color1Layout.setHorizontalGroup(
+            p_color1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(p_color1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(17, Short.MAX_VALUE))
         );
-        p_colo1Layout.setVerticalGroup(
-            p_colo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(p_colo1Layout.createSequentialGroup()
+        p_color1Layout.setVerticalGroup(
+            p_color1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(p_color1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(19, Short.MAX_VALUE))
@@ -100,7 +106,7 @@ public class Pantalla extends javax.swing.JFrame {
                     .addComponent(bt_mostrarT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(bt_mostrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(p_colo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(p_color1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(9, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -114,7 +120,7 @@ public class Pantalla extends javax.swing.JFrame {
                         .addComponent(bt_mostrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(bt_mostrarT))
-                    .addComponent(p_colo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(p_color1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(21, 21, 21))
         );
 
@@ -376,6 +382,7 @@ public class Pantalla extends javax.swing.JFrame {
         txt_descrip.setText("");
         txt_area1.setText("");
         txt_area2.setText("");
+        p_color1.setBackground(Color.lightGray);
         p_color2.setBackground(Color.lightGray);
         p_color3.setBackground(Color.lightGray);
     }//GEN-LAST:event_jTabbedPane1MouseClicked
@@ -386,23 +393,42 @@ public class Pantalla extends javax.swing.JFrame {
         if (seleccion == -1) {
             JOptionPane.showMessageDialog(this, "Nada que mostrar", "ERROR", 0);
         } else {
+            String e = t.get(seleccion).getEstado();
+            switch (e) {
+                case "Abierto":
+                    p_color1.setBackground(Color.blue);
+                    break;
+                case "En Progreso":
+                    p_color1.setBackground(Color.magenta);
+                    break;
+                case "En espera":
+                    p_color1.setBackground(Color.orange);
+                    break;
+                case "Resuelto":
+                    p_color1.setBackground(Color.green);
+                    break;
+                case "Cerrado":
+                    p_color1.setBackground(Color.white);
+                    break;
+            }            
             txt_area1.setText(t.get(seleccion).toString());
         }
     }//GEN-LAST:event_bt_mostrarActionPerformed
 
+    private void bt_mostrarTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_mostrarTActionPerformed
+        // TODO add your handling code here:
+        txt_area1.setText("");
+        p_color1.setBackground(Color.lightGray);
+        txt_area1.setText(t.toString());
+    }//GEN-LAST:event_bt_mostrarTActionPerformed
+
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel"); 
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(Pantalla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
@@ -413,8 +439,6 @@ public class Pantalla extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Pantalla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Pantalla().setVisible(true);
@@ -447,7 +471,7 @@ public class Pantalla extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JList<String> jl_1;
     private javax.swing.JProgressBar pBarr;
-    private javax.swing.JPanel p_colo1;
+    private javax.swing.JPanel p_color1;
     private javax.swing.JPanel p_color2;
     private javax.swing.JPanel p_color3;
     private javax.swing.JTextArea txt_area1;
