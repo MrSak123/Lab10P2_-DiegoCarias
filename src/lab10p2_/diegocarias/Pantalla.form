@@ -40,7 +40,7 @@
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               <Component id="pBarr" min="-2" pref="95" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" pref="464" max="32767" attributes="0"/>
+              <Component id="jTabbedPane1" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>

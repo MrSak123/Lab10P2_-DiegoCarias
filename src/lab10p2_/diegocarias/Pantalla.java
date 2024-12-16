@@ -14,10 +14,12 @@ public class Pantalla extends javax.swing.JFrame {
 
     static ArrayList<ticket> t = new ArrayList();
     static int cont = 0;
+
     public Pantalla() {
         initComponents();
 
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -325,7 +327,25 @@ public class Pantalla extends javax.swing.JFrame {
             cont++;
             t.add(new ticket(cont, asunto, e, p, descrip));
             actualizar();
+            JOptionPane.showMessageDialog(this, "Registrado", "info", 1);
 
+            Thread hilo = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    int time = 0;
+                    while (time <= cont) {
+                        try {
+                            pBarr.setMaximum(cont);
+                            pBarr.setValue(time);
+                            Thread.sleep(1000);
+                            time++;
+                        } catch (InterruptedException e) {
+                            System.out.println("no se");
+                        }
+                    }
+                }
+            });
+            hilo.start();
         }
     }//GEN-LAST:event_bt_RegistrarActionPerformed
 
@@ -335,6 +355,8 @@ public class Pantalla extends javax.swing.JFrame {
         if (t.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Nada que mostrar", "ERROR", 0);
         } else {
+            String asunto = txt_asunto.getText();
+            String descrip = txt_descrip.getText();
             String p = comboPrioridad.getSelectedItem().toString();
             String e = comboEstado.getSelectedItem().toString();
 
@@ -372,7 +394,7 @@ public class Pantalla extends javax.swing.JFrame {
                     p_color3.setBackground(Color.white);
                     break;
             }
-            txt_area2.setText(t.get(t.size() - 1).toString());
+            txt_area2.setText(new ticket(t.size(), asunto, e, p, descrip).toString());
         }
     }//GEN-LAST:event_bt_previewActionPerformed
 
@@ -410,7 +432,7 @@ public class Pantalla extends javax.swing.JFrame {
                 case "Cerrado":
                     p_color1.setBackground(Color.white);
                     break;
-            }            
+            }
             txt_area1.setText(t.get(seleccion).toString());
         }
     }//GEN-LAST:event_bt_mostrarActionPerformed
@@ -423,12 +445,8 @@ public class Pantalla extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_mostrarTActionPerformed
 
     public static void main(String args[]) {
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel"); 
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(Pantalla.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
@@ -445,6 +463,7 @@ public class Pantalla extends javax.swing.JFrame {
             }
         });
     }
+
     void actualizar() {
         DefaultListModel Lista = new DefaultListModel();
         jl_1.setModel(Lista);
